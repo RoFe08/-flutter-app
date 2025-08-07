@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:greengrocer/src/models/item_model.dart';
 import 'package:greengrocer/src/config/custom_colors.dart';
 import 'package:greengrocer/src/services/utils_services.dart';
+import 'package:greengrocer/src/pages/product/product_screen.dart';
 
 class ItemTile extends StatelessWidget {
   ItemTile({super.key, required this.item});
@@ -13,7 +14,16 @@ class ItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Card(
+        //Conteudo
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) {
+                return ProductScreen(item : item);
+              },
+            ));
+          },
+          child:Card(
           elevation: 1,
           shadowColor: Colors.grey.shade300,
           shape: RoundedRectangleBorder(
@@ -60,6 +70,9 @@ class ItemTile extends StatelessWidget {
             ),
           ),
         ),
+        ),
+
+        //Adicionar ao carrinho
         Positioned(
           top: 4,
           right: 4,
